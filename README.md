@@ -1,33 +1,62 @@
-# Student Performance Data Analysis
+# 🎓 Student Performance Data Analysis
 
-## Project Overview
-This project analyzes student performance data to identify patterns and insights across demographic factors, such as gender, parental education, and lunch programs.
+This project analyzes student performance data to uncover trends, identify educational disparities, and extract insights that can support data-driven decision-making in the education sector.
 
-## Dataset
-- Source: Kaggle (Students Performance in Exams)
-- [Link to Dataset](https://www.kaggle.com/datasets/spscientist/students-performance-in-exams)
+> **Goal:** Use SQL, Python, and data visualization to explore how factors like gender, parental education, test preparation, and lunch programs affect student performance.
 
-## Tools Used
-- Python (pandas, matplotlib, seaborn)
-- SQL (SQLite)
-- Jupyter Notebook
-- Git & GitHub
+---
 
-## Key Findings
-- Differences in average scores across gender and parental education.
-- Lunch programs may correlate with performance differences.
-- Overall score distribution shows room for targeted improvement efforts.
+## 📊 Dataset
 
-## Repository Structure
-- `/data`: Raw and cleaned datasets
-- `/notebooks`: Jupyter Notebook with full analysis
-- `/sql`: SQL queries used for data analysis
-- `/visualizations`: Generated plots
+- Source: [Kaggle – Students Performance in Exams](https://www.kaggle.com/datasets/spscientist/students-performance-in-exams)
+- Rows: 1,000 students
+- Features:
+  - `gender`
+  - `race/ethnicity`
+  - `parental level of education`
+  - `lunch`
+  - `test preparation course`
+  - `math`, `reading`, and `writing` scores
 
-## How to Run
-1. Install dependencies: `pip install -r requirements.txt`
-2. Open the Jupyter Notebook: `notebooks/data_cleaning_analysis.ipynb`
-3. Review SQL queries in `/sql/analysis_queries.sql`
+---
 
-## Author
-Sarah Miller
+## 🔍 Key Questions Explored
+
+- Do students who complete test preparation perform better?
+- Is there a performance gap between genders or ethnic groups?
+- How does parental education level impact student scores?
+- Are there strong correlations between math, reading, and writing performance?
+
+---
+
+## 💻 Technologies Used
+
+| Tool | Purpose |
+|------|---------|
+| **Python** | Data cleaning, analysis, and visualization |
+| **Pandas** | Data wrangling |
+| **Seaborn/Matplotlib** | Visualizations |
+| **SQLite + SQL** | Query-based analysis |
+| **Jupyter Notebook** | Interactive analysis and documentation |
+| **GitHub** | Version control and portfolio hosting |
+
+---
+
+## 🧼 Data Cleaning
+
+Performed the following steps in `notebooks/data_cleaning_analysis.ipynb`:
+- Standardized column names
+- Checked for missing/duplicate values
+- Created a new `average_score` column as the mean of math, reading, and writing scores
+
+---
+
+## 🧠 Statistical Analysis
+
+Used Python and SciPy to explore whether test preparation significantly impacted student scores.
+
+```python
+from scipy.stats import ttest_ind
+prep = df[df['test_preparation_course'] == 'completed']['average_score']
+no_prep = df[df['test_preparation_course'] == 'none']['average_score']
+ttest_ind(prep, no_prep)
